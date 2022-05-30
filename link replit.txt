@@ -1,0 +1,7 @@
+copy link to replit.com for checking the result
+sugeno's method:
+https://replit.com/@durokura/implementasi-logika-fuzzy-metode-sugeno#main.py
+tsukamoto's method:
+https://replit.com/@durokura/implementasi-logika-fuzzy-tsukamoto#main.py:89:31
+mamdani's method:
+ 
