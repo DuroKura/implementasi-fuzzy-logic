@@ -1,37 +1,37 @@
 print ('Implementasi Logika Fuzzy pada uji Kelayakan Komputer' )
 print ('\t\t\t\t Kelompok 1 \t\t\t\t')
-print('=================================================')
-x=input('Battery Life(jam): ')
-y=input('Processor Speed(Hz): ')
-z=input('Memory Size(GB): ')
+print ('=================================================')
+x=input('Battery Life(hr): ')
+y=input('Processor Speed(GHz): ')
+z=input('Memory size(GB): ')
 
-baterai = int(x)
-prosesor = int(y)
+baterai = float(x)
+prosesor = float(y)
 memori = int(z)
 
-#fuzifikasi
-if baterai <= 5:
+  #fuzifikasi
+if baterai <= 4.0:
   value_cepat = 1
   value_lama = 0
-if baterai > 5 and baterai < 6:
-  value_cepat = (6-baterai)/(6-5)
-  value_lama = (baterai-50)/(6-5)
-if baterai >= 6:
+if baterai > 4.0 and baterai < 6.0:
+  value_cepat = (6.0-baterai)/(6.0-5.0)
+  value_lama = (baterai-5.0)/(6.0-5.0)
+if baterai >= 6.0:
   value_cepat = 0
   value_lama = 1
-print ('cepat: ', value_cepat)
-print ('lama: ', value_lama)
-if prosesor <= 1200:
+print ('cepat habis ', value_cepat)
+print ('lama habis ', value_lama)
+if prosesor <= 1.200:
   value_lambat = 1
   value_tinggi = 0
-if prosesor > 1200 and prosesor < 2000:
-  value_lambat = (2000-prosesor)/(2000-1200)
-  value_tinggi = (prosesor-1200)/(2000-1200)
-if prosesor >= 2000:
+if prosesor > 1.200 and prosesor < 1.800:
+  value_lambat = (1.800-prosesor)/(1.800-1.200)
+  value_tinggi = (prosesor-1.200)/(1.800-1.200)
+if prosesor >= 1.800:
   value_lambat = 0
   value_tinggi = 1
-print ('lambat: ', value_lambat)
-print ('tinggi: ', value_tinggi)
+print ('prosesor lambat ', value_lambat)
+print ('prosesor tinggi ', value_tinggi)
 if memori <= 400:
   value_kecil = 1
   value_besar = 0
@@ -41,8 +41,8 @@ if memori > 400 and memori < 600:
 if memori >= 600:
   value_kecil = 0
   value_besar = 1
-print ('kecil: ', value_kecil)
-print ('besar: ', value_besar)
+print ('memori kecil ', value_kecil)
+print ('memori besar ', value_besar)
 #inferensi
 pc=[]
 def fungsiinferensitidaklayak (variable_baterai, variable_prosesor, variable_memori):
@@ -50,7 +50,8 @@ def fungsiinferensitidaklayak (variable_baterai, variable_prosesor, variable_mem
     if variable_memori != 0:
       if variable_prosesor != 0:
         hasil_output = min(variable_baterai, variable_prosesor, variable_memori)
-        v = (100*baterai)+(prosesor/10)+memori 
+        v=1500
+        #v = (100*baterai)+(10*prosesor)+memori
         pc.append([hasil_output, v])
 
 def fungsiinferensilayak (variable_baterai, variable_prosesor, variable_memori):
@@ -58,22 +59,27 @@ def fungsiinferensilayak (variable_baterai, variable_prosesor, variable_memori):
     if variable_memori != 0:
       if variable_prosesor != 0:
         hasil_output = min(variable_baterai, variable_prosesor, variable_memori)
-        v = (100*baterai)+(prosesor/10)+memori
+        v=1600
+        #v = (100*baterai)+(10*prosesor)+memori
         pc.append([hasil_output, v])
 
 fungsiinferensitidaklayak(value_kecil, value_cepat, value_lambat)
+
 fungsiinferensitidaklayak(value_besar, value_cepat, value_lambat)
+
 fungsiinferensitidaklayak(value_kecil, value_cepat, value_tinggi)
+
 fungsiinferensitidaklayak(value_kecil, value_lama, value_lambat)
+
 fungsiinferensilayak(value_besar, value_cepat, value_tinggi)
+
 fungsiinferensilayak(value_besar, value_lama, value_lambat)
+
 fungsiinferensilayak(value_besar, value_lama, value_tinggi)
-fungsiinferensilayak(value_kecil, value_lama, value_lambat)
-print ('Kondisi Laptop: ', pc)
 
+fungsiinferensilayak(value_kecil, value_lama, value_tinggi)
 
-
-#defuzzifikasi
+#defuzifikasi
 perkalian_new = 0
 pembagian_new = 0
 
@@ -83,9 +89,9 @@ for j in range (0, len(pc)):
   perkalian_new = perkalian_new + perkalian
   pembagian_new = pembagian_new + pembagian
 z = perkalian_new / pembagian_new
-print ('nilai z: ', z)
-
+print (z)
 if z <= 1500:
-  print ('PC tidak layak')
+  print ('PC Tidak Layak')
 else :
-  print ('PC layak')
+  print ('PC Layak')
+  
